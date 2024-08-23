@@ -4,6 +4,9 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+
+        JDBC.testJDBC();
+
         int option;
         Scanner scanner = new Scanner(System.in);
 
@@ -38,7 +41,7 @@ public class Main {
 
         System.out.print("Milhar: ");
         aposta.setNumero_aposta(scanner.next());
-        System.out.println(aposta.toString());
+        System.out.println(aposta);
     }
 
     public static void formApostador(){
@@ -47,6 +50,6 @@ public class Main {
 
         System.out.print("Nome do apostador: ");
         apostador.setNome(scanner.next());
-        System.out.println(apostador.toString());
+        System.out.println(apostador);
     }
 }
