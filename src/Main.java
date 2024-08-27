@@ -45,11 +45,15 @@ public class Main {
     }
 
     public static void formApostador(){
-        Apostador apostador = new Apostador(0, "");
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Nome do apostador: ");
-        apostador.setNome(scanner.next());
-        System.out.println(apostador);
+        System.out.print("Nome: ");
+        String nome = (scanner.next());
+        System.out.print("Telefone: ");
+        String telefone = (scanner.next());
+
+        Apostador apostador = new Apostador(nome, telefone);
+
+        JDBC.insert(apostador);
     }
 }

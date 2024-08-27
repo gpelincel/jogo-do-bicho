@@ -1,6 +1,7 @@
 public class Apostador {
     private int id_apostador;
     private String nome;
+    private String telefone;
 
     public int getId_apostador() {
         return id_apostador;
@@ -18,9 +19,9 @@ public class Apostador {
         this.nome = nome;
     }
 
-    public Apostador(int id_apostador, String nome) {
-        this.id_apostador = id_apostador;
+    public Apostador(String nome, String telefone) {
         this.nome = nome;
+        this.telefone = telefone;
     }
 
     public String toString() {
@@ -28,5 +29,13 @@ public class Apostador {
                 "id_apostador:" + id_apostador +
                 ", nome:'" + nome + '\'' +
                 '}';
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }
