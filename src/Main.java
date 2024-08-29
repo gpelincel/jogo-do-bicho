@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -35,10 +37,20 @@ public class Main {
     }
 
     public static void formAposta(){
-        Apostador apostador = null;
+        Apostador apostador = new Apostador("", "");
         Aposta aposta = new Aposta(0, "", apostador);
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Selecione o apostador:");
+        System.out.println("=========================================");
+
+        List<Apostador> apostadores = JDBC.getAll(apostador);
+
+        for (Apostador apostador_each : apostadores){
+            System.out.println(apostador_each.getId_apostador() + " - "+ apostador_each.getNome());
+        }
+
+        System.out.println("=========================================");
         System.out.print("Milhar: ");
         aposta.setNumero_aposta(scanner.next());
         System.out.println(aposta);

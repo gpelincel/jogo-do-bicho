@@ -19,6 +19,7 @@ public class Apostador {
         this.nome = nome;
     }
 
+    public Apostador(){}
     public Apostador(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
