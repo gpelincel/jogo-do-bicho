@@ -47,13 +47,22 @@ public class Main {
         List<Apostador> apostadores = JDBC.getAll(apostador);
 
         for (Apostador apostador_each : apostadores){
-            System.out.println(apostador_each.getId_apostador() + " - "+ apostador_each.getNome());
+            System.out.println(apostador_each.getId() + " - "+ apostador_each.getNome());
         }
 
         System.out.println("=========================================");
-        System.out.print("Milhar: ");
+        System.out.print("Sua escolha: ");
+        int apostador_id = scanner.nextInt();
+
+        for (Apostador apostador_select : apostadores){
+            if (apostador_select.getId() == apostador_id){
+                aposta.setApostador(apostador_select);
+            }
+        }
+        System.out.println("Milhar (aposta):");
         aposta.setNumero_aposta(scanner.next());
-        System.out.println(aposta);
+
+        JDBC.insert(aposta);
     }
 
     public static void formApostador(){

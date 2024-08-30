@@ -19,8 +19,8 @@ public class Aposta {
         this.numero_aposta = numero_aposta;
     }
 
-    public Apostador getApostador() {
-        return apostador;
+    public int getApostador() {
+        return apostador.getId();
     }
 
     public void setApostador(Apostador apostador) {

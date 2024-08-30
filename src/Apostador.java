@@ -3,7 +3,7 @@ public class Apostador {
     private String nome;
     private String telefone;
 
-    public int getId_apostador() {
+    public int getId() {
         return id_apostador;
     }
 
