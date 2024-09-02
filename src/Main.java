@@ -7,8 +7,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        JDBC.testJDBC();
-
         int option;
         Scanner scanner = new Scanner(System.in);
 
@@ -21,22 +19,24 @@ public class Main {
             System.out.print("Sua opcao: ");
             option = scanner.nextInt();
 
-            switch (option){
+            switch (option) {
                 case 1:
                     System.out.println("\n");
                     System.out.println("===== CADASTRAR APOSTA =====");
                     formAposta();
-                    break;
 
                 case 2:
                     System.out.println("===== CADASTRAR APOSTADOR =====");
                     formApostador();
-                    break;
             }
-        } while (option == 0);
+
+            System.out.print("Deseja continuar no sistema? (1 - Sim / 0 - Nao): ");
+            option = scanner.nextInt();
+
+        } while (option != 0);
     }
 
-    public static void formAposta(){
+    public static void formAposta() {
         Apostador apostador = new Apostador("", "");
         Aposta aposta = new Aposta(0, "", apostador);
         Scanner scanner = new Scanner(System.in);
@@ -46,32 +46,31 @@ public class Main {
 
         List<Apostador> apostadores = JDBC.getAll(apostador);
 
-        for (Apostador apostador_each : apostadores){
-            System.out.println(apostador_each.getId() + " - "+ apostador_each.getNome());
+        for (Apostador apostador_each : apostadores) {
+            System.out.println(apostador_each.getId() + " - " + apostador_each.getNome());
         }
 
         System.out.println("=========================================");
         System.out.print("Sua escolha: ");
         int apostador_id = scanner.nextInt();
-
-        for (Apostador apostador_select : apostadores){
-            if (apostador_select.getId() == apostador_id){
+        for (Apostador apostador_select : apostadores) {
+            if (apostador_select.getId() == apostador_id) {
                 aposta.setApostador(apostador_select);
             }
         }
-        System.out.println("Milhar (aposta):");
-        aposta.setNumero_aposta(scanner.next());
+        System.out.print("\nMilhar (aposta):");
+        aposta.setNumero_aposta(scanner.nextLine());
 
         JDBC.insert(aposta);
     }
 
-    public static void formApostador(){
+    public static void formApostador() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Nome: ");
-        String nome = (scanner.next());
-        System.out.print("Telefone: ");
-        String telefone = (scanner.next());
+        String nome = (scanner.nextLine());
+        System.out.print("\nTelefone: ");
+        String telefone = (scanner.nextLine());
 
         Apostador apostador = new Apostador(nome, telefone);
 
