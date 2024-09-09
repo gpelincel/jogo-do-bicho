@@ -1,6 +1,6 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.random.RandomGenerator;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -12,8 +12,9 @@ public class Main {
 
         do {
             System.out.println("===== JOGO DO BICHO ======");
-            System.out.println("1 - Apostar em um grupo");
+            System.out.println("1 - Apostar");
             System.out.println("2 - Cadastrar apostador");
+            System.out.println("3 - Sortear milhar");
             System.out.println("0 - Sair");
             System.out.println("\n");
             System.out.print("Sua opcao: ");
@@ -28,12 +29,36 @@ public class Main {
                 case 2:
                     System.out.println("===== CADASTRAR APOSTADOR =====");
                     formApostador();
+
+                case 3:
+                    System.out.println("===== FAZER SORTEIO =====");
+                    sortear();
             }
 
             System.out.print("Deseja continuar no sistema? (1 - Sim / 0 - Nao): ");
             option = scanner.nextInt();
 
         } while (option != 0);
+    }
+
+    public static void sortear() {
+        String milhar = String.valueOf(RandomGenerator.getDefault().nextInt(1000, 9999));
+        String[] dezenas = {"", ""};
+        String[] bichos = {"Avestruz", "Aguia", "Burro", "Borboleta", "Cachorro", "Cabra", "Carneiro", "Camelo", "Cobra", "Coelho", "Cavalo", "Elefante", "Galo", "Gato", "Jacare", "Leao", "Macaco", "Porco", "Pavao", "Peru", "Touro", "Tigre", "Urso", "Veado", "Vaca"};
+
+        for (int i = 0; i < 2; i++) {
+            dezenas[i] = String.valueOf(milhar.charAt(i));
+            dezenas[i] += milhar.charAt(i + 1);
+        }
+
+        int grupo = 1;
+        for (int i = 1; i <= 100; i += 4, grupo++) {
+            if (Integer.valueOf(dezenas[0]) > i && Integer.valueOf(dezenas[0]) < i + 4) {
+                break;
+            }
+        }
+
+        System.out.println(bichos[grupo-1]);
     }
 
     public static void formAposta() {
