@@ -45,20 +45,30 @@ public class Main {
         String milhar = String.valueOf(RandomGenerator.getDefault().nextInt(1000, 9999));
         String[] dezenas = {"", ""};
         String[] bichos = {"Avestruz", "Aguia", "Burro", "Borboleta", "Cachorro", "Cabra", "Carneiro", "Camelo", "Cobra", "Coelho", "Cavalo", "Elefante", "Galo", "Gato", "Jacare", "Leao", "Macaco", "Porco", "Pavao", "Peru", "Touro", "Tigre", "Urso", "Veado", "Vaca"};
+        String[] bichos_sorteados = {"", ""};
 
         for (int i = 0; i < 2; i++) {
             dezenas[i] = String.valueOf(milhar.charAt(i));
             dezenas[i] += milhar.charAt(i + 1);
         }
 
+        System.out.println(dezenas[0]);
+        System.out.println(dezenas[1]);
+
         int grupo = 1;
         for (int i = 1; i <= 100; i += 4, grupo++) {
-            if (Integer.valueOf(dezenas[0]) > i && Integer.valueOf(dezenas[0]) < i + 4) {
-                break;
+            for (int j = 0; j < 2; j++) {
+                if (Integer.valueOf(dezenas[j]) > i && Integer.valueOf(dezenas[j]) < i + 4) {
+                    bichos_sorteados[j] = bichos[grupo-1];
+                    grupo = 0;
+                    break;
+                }
             }
         }
 
-        System.out.println(bichos[grupo-1]);
+        System.out.println("Milhar sorteado: "+milhar);
+        System.out.println("Bicho 1: "+bichos_sorteados[0]);
+        System.out.println("Bicho 2: "+bichos_sorteados[1]);
     }
 
     public static void formAposta() {

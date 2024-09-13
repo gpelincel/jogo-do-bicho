@@ -23,6 +23,30 @@ public class Aposta {
         return apostador.getId();
     }
 
+    public String[] getBichos(){
+        String[] dezenas = {"", ""};
+        String[] bichos = {"Avestruz", "Aguia", "Burro", "Borboleta", "Cachorro", "Cabra", "Carneiro", "Camelo", "Cobra", "Coelho", "Cavalo", "Elefante", "Galo", "Gato", "Jacare", "Leao", "Macaco", "Porco", "Pavao", "Peru", "Touro", "Tigre", "Urso", "Veado", "Vaca"};
+        String[] bichos_sorteados = {"", ""};
+
+        for (int i = 0; i < 2; i++) {
+            dezenas[i] = String.valueOf(this.numero_aposta.charAt(i));
+            dezenas[i] += this.numero_aposta.charAt(i + 1);
+        }
+
+        int grupo = 1;
+        for (int i = 1; i <= 100; i += 4, grupo++) {
+            for (int j = 0; j < 2; j++) {
+                if (Integer.valueOf(dezenas[j]) > i && Integer.valueOf(dezenas[j]) < i + 4) {
+                    bichos_sorteados[j] = bichos[grupo-1];
+                    grupo = 0;
+                    break;
+                }
+            }
+        }
+
+        return bichos_sorteados;
+    }
+
     public void setApostador(Apostador apostador) {
         this.apostador = apostador;
     }
